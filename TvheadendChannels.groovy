@@ -16,7 +16,7 @@ class TvheadendChannels extends WebResourceUrlExtractor {
     final static RESOURCE_TITLE_PREFIX = 'Tvheadend on '
 
     final static API_SERVERINFO_PATH = '/api/serverinfo'
-    final static API_CHANNEL_GRID_PATH = '/api/channel/grid?start=0&limit='
+    final static API_CHANNEL_GRID_PATH = '/api/channel/grid?start=0&limit=9999'
     final static API_CHANNEL_STREAM_PATH = '/stream/channel/'
 
     final static JSON = new JsonSlurper()
@@ -33,7 +33,7 @@ class TvheadendChannels extends WebResourceUrlExtractor {
     WebResourceContainer extractItems(URL resourceUrl, int maxItemsToRetrieve) {
         final url = resourceUrl.toString()
         final items = []
-        final channels = fetchJSON(resourceUrl, API_CHANNEL_GRID_PATH + maxItemsToRetrieve)
+        final channels = fetchJSON(resourceUrl, API_CHANNEL_GRID_PATH)
 
         for (Map entry : channels.entries) {
             final info = [CONTENT_URL_KEY: url + API_CHANNEL_STREAM_PATH + entry.uuid]
