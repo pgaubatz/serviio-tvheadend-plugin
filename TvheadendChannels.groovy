@@ -36,7 +36,8 @@ class TvheadendChannels extends WebResourceUrlExtractor {
         final channels = fetchJSON(resourceUrl, API_CHANNEL_GRID_PATH)
 
         for (Map entry : channels.entries) {
-            final info = [CONTENT_URL_KEY: url + API_CHANNEL_STREAM_PATH + entry.uuid]
+            final info = [:]
+            info[CONTENT_URL_KEY] = url + API_CHANNEL_STREAM_PATH + entry.uuid
             if (entry.icon_public_url) {
                 info[THUMBNAIL_URL_KEY] = url + '/' + entry.icon_public_url
             }
