@@ -34,15 +34,19 @@ class TvheadendChannels extends WebResourceUrlExtractor {
         final url = resourceUrl.toString()
         final items = []
         final channels = fetchJSON(resourceUrl, API_CHANNEL_GRID_PATH)
+        final maxNum = channels.entries.max { it.number }
+        final maxNumLength = maxNum.number.toString().length()
 
         for (Map entry : channels.entries) {
+            final title = entry.number.toString().padLeft(maxNumLength, '0') + '. ' + entry.name
+
             final info = [:]
             info[CONTENT_URL_KEY] = url + API_CHANNEL_STREAM_PATH + entry.uuid
             if (entry.icon_public_url) {
                 info[THUMBNAIL_URL_KEY] = url + '/' + entry.icon_public_url
             }
 
-            items.add(new WebResourceItem(title: entry.name, additionalInfo: info))
+            items.add(new WebResourceItem(title: title, additionalInfo: info))
         }
 
         return new WebResourceContainer(
