@@ -17,4 +17,4 @@ Requirements
 
 Troubleshooting
 ---------------
-- If something goes wrong, make sure that Tvheadend's API can be reached without authentication. You can easily check this by opening, e.g., _http://host:9981/api/serverinfo_ in your favorite Web browser's incognito/private mode. If Tvheadend is configured correctly, it should immediately return a JSON document (e.g, `{"sw_version": "3.9...`), instead of requesting a username/password.
+- If something goes wrong, make sure that Tvheadend's API can be reached **without** authentication. Read Tvheadend's [documentation about access control](https://www.tvheadend.org/projects/tvheadend/wiki/Access_configuration) to learn how to achieve this! You can easily check your configuration by opening, e.g., _http://host:9981/api/serverinfo_ in your favorite Web browser's **incognito/private mode**. If Tvheadend is configured correctly, it will immediately return a JSON document (e.g, `{"sw_version": "3.9...`), instead of requesting a username/password.
